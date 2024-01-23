@@ -6,6 +6,8 @@ name: Test
 on:
   workflow_dispatch:
 
+permissions: write-all
+
 jobs:
   build:
 
@@ -17,8 +19,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+
+    - run: echo $MONGODB_URI
+      env: # Or as an environment variable
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
